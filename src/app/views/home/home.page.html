@@ -1,13 +1,9 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-  </div>
+  <ion-row>
+    <ion-label>RoomBook</ion-label>
+  </ion-row>
+    <ion-row class="button-container ion-justify-content-center ion-align-items-center ion-margin-top">
+      <ion-button [routerLink]="['/sign-up']" class="auth-button ion-margin-bottom">New user</ion-button>
+      <ion-button fill="outline" class="auth-button">Sign in</ion-button>
+    </ion-row>
 </ion-content>

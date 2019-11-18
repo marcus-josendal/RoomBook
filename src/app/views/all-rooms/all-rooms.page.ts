@@ -22,7 +22,7 @@ export class AllRoomsPage implements OnInit, OnDestroy {
         });
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.isProprietorChanges.unsubscribe();
   }
 

@@ -28,7 +28,7 @@ export class SignUpPage implements OnInit {
         if (isValidInput.valid) {
             this.isLoading = true;
             this.authService.registerUser(this.email, this.password, this.willBeRentingOut)
-                .then(() => this.router.navigate(['all-rooms']))
+                .then(() => this.router.navigate(['tab-nav']))
                 .catch(err => this.errorMessage = err)
                 .finally(() => this.isLoading = false);
         } else {
@@ -37,7 +37,7 @@ export class SignUpPage implements OnInit {
     }
 
 
-    // I really don't like writing custom validation, but the Angular frameworks for validation look awful.
+    // I really don't like writing custom validation, but the Angular frameworks for validation looks awful.
     validateInput(): { valid: boolean, statusMessage: string; } {
         const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
         const validatePassword = (p, cp) =>  p === cp && p.length >= 8;

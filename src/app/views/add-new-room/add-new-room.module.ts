@@ -4,22 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
-
 import { IonicModule } from '@ionic/angular';
 
-import { TabNavPageRoutingModule } from './tab-nav-routing.module';
+import { AddNewRoomPageRoutingModule } from './add-new-room-routing.module';
 
-import { TabNavPage } from './tab-nav.page';
+import { AddNewRoomPage } from './add-new-room.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TabNavPageRoutingModule,
+    AddNewRoomPageRoutingModule,
     FontAwesomeModule
   ],
-  declarations: [TabNavPage]
+  declarations: [AddNewRoomPage]
 })
-export class TabNavPageModule {
-}
+export class AddNewRoomPageModule {}

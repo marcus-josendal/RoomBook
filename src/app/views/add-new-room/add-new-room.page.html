@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add New Room for Rental</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding sign-up-form">
+  <ion-row class="ion-justify-content-center ion-margin-bottom ion-margin-top">
+    <ion-item class="sign-up-item">
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input placeholder="E.g. 'Beautiful Meeting room'"></ion-input>
+    </ion-item>
+  </ion-row>
+  <ion-row class="ion-justify-content-center ion-margin-bottom">
+    <ion-item class="sign-up-item">
+      <ion-label position="stacked">
+        Location
+        <span style="color: grey">(press icon for location)</span>
+      </ion-label>
+      <ion-input
+              [disabled]="isFetchingLocation"
+              [(ngModel)]="roomLocation"
+              placeholder="Office location"
+      ></ion-input>
+      <fa-icon
+              *ngIf="!isFetchingLocation"
+              (click)="getLocation()"
+              [icon]="['fas', 'search-location']"
+              class="icon-size grey-icon"
+              slot="end"
+      ></fa-icon>
+      <ion-spinner
+              color="primary"
+              name="crescent"
+              *ngIf="isFetchingLocation"
+              slot="end"
+      ></ion-spinner>
+    </ion-item>
+  </ion-row>
+  <ion-row class="ion-justify-content-center ion-margin-bottom">
+    <ion-item class="sign-up-item">
+      <ion-label position="stacked">Price</ion-label>
+      <ion-input placeholder="0 NOK" [(ngModel)]="roomPrice"></ion-input>
+    </ion-item>
+  </ion-row>
+  <ion-row class="ion-justify-content-center ion-margin-top">
+    <ion-button class="sign-up-button">
+      <ion-label>Add Room</ion-label>
+    </ion-button>
+    <ion-label class="ion-text-center" color="danger"></ion-label>
+  </ion-row>
+</ion-content>

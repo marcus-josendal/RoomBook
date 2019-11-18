@@ -17,7 +17,6 @@ export class AllRoomsPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.isProprietorChanges = this.authService.getIsProprietor()
         .subscribe(isProprietor => {
-          console.log(isProprietor);
           this.isProprietor = isProprietor;
         });
   }

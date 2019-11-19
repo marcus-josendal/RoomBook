@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'tab-nav',
     loadChildren: () => import('./views/tab-nav/tab-nav.module').then( m => m.TabNavPageModule)
+  },
+  {
+    path: 'room-detail',
+    loadChildren: () => import('./views/room-detail/room-detail.module').then( m => m.RoomDetailPageModule)
   }
 ];
 

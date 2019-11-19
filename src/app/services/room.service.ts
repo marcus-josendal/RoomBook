@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
-import { Observable } from 'rxjs';
+import {asyncScheduler, Observable} from 'rxjs';
 import { Room } from '../../models/Room';
+import {observeOn} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

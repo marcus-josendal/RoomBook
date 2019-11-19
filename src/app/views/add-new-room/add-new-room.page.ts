@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { RoomService } from '../../services/room.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import Axios from 'axios';
 
@@ -11,11 +12,19 @@ import Axios from 'axios';
 })
 export class AddNewRoomPage implements OnInit {
 
-  constructor(private authService: AuthService, private geoLocation: Geolocation) { }
+  constructor(
+      private authService: AuthService,
+      private geoLocation: Geolocation,
+      private roomService: RoomService
+  ) { }
 
+  title = '';
   roomLocation = '';
   roomPrice: number | null = null;
+  email = '';
+  companyName = '';
   isFetchingLocation = false;
+  isLoading = false;
 
   ngOnInit() {
 
@@ -34,9 +43,11 @@ export class AddNewRoomPage implements OnInit {
     });
   }
 
-  get formattedPrice() {
-    if (this.roomPrice.toString().length > 0) {
-      return this.roomPrice + ',-';
-    }
+  addRoom() {
+    this.isLoading = true;
+    this.roomService.createNewRoomForRent(this.title, this.roomLocation, this.roomPrice, this.email, this.companyName)
+        .then(data => console.log(data))
+        .catch(e => console.log(e))
+        .finally(() => this.isLoading = false);
   }
 }

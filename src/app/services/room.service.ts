@@ -56,10 +56,17 @@ export class RoomService {
           .update({ rented: true, renter: userId });
   }
 
+  /* Removes the reservation for the given room */
+  removeReservationFromUser(roomId: string) {
+      return this.fireStore.doc('rooms/' + roomId)
+          .update({ rented: false, renter: '' });
+  }
+
   /* Observable - returns all rooms - how to sort it is up to the user */
   getAllRooms() {
     return this.fireStore.collection('rooms').valueChanges() as Observable<[Room]>;
   }
+
 
   /* Observable -  returns all rooms where the "renter"-field is equals to the userId */
   getMyBookedRooms(userId: string) {
@@ -67,4 +74,5 @@ export class RoomService {
           .collection('rooms', ref => ref.where('renter', '==', userId))
           .valueChanges() as Observable<[Room]>;
   }
+
 }

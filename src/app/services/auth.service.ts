@@ -8,11 +8,11 @@ import {distinctUntilChanged, flatMap, map} from 'rxjs/operators';
 })
 export class AuthService {
 
+    user = null;
+
     constructor(private fireAuth: AngularFireAuth, private fireStore: AngularFirestore) {
         this.setUserInfo();
     }
-
-    user = null;
 
     /* After the user is registered their role is set */
     registerUser(email: string, password: string, isRentingOut: boolean) {

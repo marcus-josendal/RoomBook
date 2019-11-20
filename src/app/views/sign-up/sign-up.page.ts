@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import {NativeService} from '../../services/native.service';
 
 @Component({
     selector: 'app-sign-up',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SignUpPage implements OnInit {
 
-    constructor(private authService: AuthService, private router: Router) { }
+    constructor(private authService: AuthService, private nativeService: NativeService, private router: Router) { }
 
     // Form input
     email = '';
@@ -18,7 +19,6 @@ export class SignUpPage implements OnInit {
     willBeRentingOut = false;
     errorMessage = '';
     isLoading = false;
-
 
     ngOnInit() {
     }

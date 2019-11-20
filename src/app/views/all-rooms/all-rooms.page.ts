@@ -25,15 +25,16 @@ export class AllRoomsPage implements OnInit, OnDestroy {
   isProprietorChanges: Subscription;
 
   ngOnInit() {
-    // Checks if user is proprietor or not
+    /* If user is proprietor the next value will be true */
     this.isProprietorChanges = this.authService.getIsProprietor()
         .subscribe(isProprietor => {
           this.isProprietor = isProprietor;
         });
 
-    // Instead of simply returning all rooms in random order, sort them by timestamp
+    /* Sorts the rooms on timestamp and filters out rooms the logged in user have rented */
     this.rooms = this.roomService.getAllRooms().pipe(
-        map(rooms => rooms.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()))
+        map(rooms => rooms.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())),
+        map(rooms => rooms.filter(room => room.renter !== this.authService.user.uid))
     );
   }
 
@@ -43,7 +44,7 @@ export class AllRoomsPage implements OnInit, OnDestroy {
 
   navigateToRoomDetailView(room: Room) {
     const navigationExtras: NavigationExtras = {
-      state: { room }
+      state: { room, isRentedByMe: false },
     };
 
     this.router.navigate(['room-detail'], navigationExtras);

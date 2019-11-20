@@ -9,30 +9,20 @@
 
 <ion-content class="ion-padding sign-up-form">
   <ion-row class="ion-justify-content-center ion-margin-bottom ion-margin-top">
-    <ion-item class="sign-up-item">
+    <ion-item class="login-item">
       <ion-label position="stacked">Your e-mail</ion-label>
       <ion-input [(ngModel)]="email"></ion-input>
     </ion-item>
   </ion-row>
   <ion-row class="ion-justify-content-center ion-margin-bottom">
-    <ion-item class="sign-up-item">
+    <ion-item class="login-item">
       <ion-label position="stacked">Pick a password</ion-label>
       <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
   </ion-row>
-  <ion-row class="ion-justify-content-center ion-margin-bottom">
-    <ion-item class="sign-up-item">
-      <ion-label position="stacked">Confirm Password</ion-label>
-      <ion-input type="password" [(ngModel)]="confirmPassword"></ion-input>
-    </ion-item>
-  </ion-row>
-  <ion-item lines="none">
-    <ion-label>Will you also be renting out rooms?</ion-label>
-    <ion-checkbox [(ngModel)]="willBeRentingOut" color=""></ion-checkbox>
-  </ion-item>
   <ion-row class="ion-justify-content-center ion-margin-top">
-    <ion-button class="sign-up-button" (click)="registerUser()">
-      <ion-label *ngIf="!isLoading">Create User</ion-label>
+    <ion-button class="login-button" (click)="login()">
+      <ion-label *ngIf="!isLoading">Sign In</ion-label>
       <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
     </ion-button>
     <ion-label class="ion-text-center" color="danger"> {{ errorMessage }} </ion-label>

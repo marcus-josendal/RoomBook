@@ -12,12 +12,6 @@ import Axios from 'axios';
 })
 export class AddNewRoomPage implements OnInit {
 
-  constructor(
-      private authService: AuthService,
-      private geoLocation: Geolocation,
-      private roomService: RoomService
-  ) { }
-
   /* Form fields */
   title = '';
   description: '';
@@ -31,10 +25,18 @@ export class AddNewRoomPage implements OnInit {
   isFetchingLocation = false;
   isLoading = false;
 
+  constructor(
+      private authService: AuthService,
+      private geoLocation: Geolocation,
+      private roomService: RoomService
+  ) { }
+
+
   ngOnInit() {
 
   }
 
+  /* Gets the users lat/lng and fetches the address based on these */
   getLocation() {
     this.roomLocation = 'Fetching you location..';
     this.isFetchingLocation = true;

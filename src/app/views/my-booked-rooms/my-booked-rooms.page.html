@@ -7,7 +7,7 @@
 <ion-content>
   <ion-content>
     <ion-list>
-      <ion-item *ngFor="let room of myBookedRooms | async" lines="none">
+      <ion-item *ngFor="let room of myBookedRooms | async" (click)="navigateToRoomDetailView(room)" lines="none">
         <app-room-card [roomData]="room"></app-room-card>
       </ion-item>
     </ion-list>

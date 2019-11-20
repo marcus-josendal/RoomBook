@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {RoomService} from '../../services/room.service';
-import {Router} from '@angular/router';
+import {NavigationExtras, Router} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {Room} from '../../../models/Room';
 import {map} from 'rxjs/operators';
@@ -26,6 +26,13 @@ export class MyBookedRoomsPage implements OnInit {
     this.myBookedRooms = this.roomService.getMyBookedRooms(this.userId).pipe(
         map(rooms => rooms.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()))
     );
-    this.myBookedRooms.subscribe(next => console.log(next));
+  }
+
+  navigateToRoomDetailView(room: Room) {
+    const navigationExtras: NavigationExtras = {
+      state: { room, isRentedByMe: true },
+    };
+
+    this.router.navigate(['room-detail'], navigationExtras);
   }
 }

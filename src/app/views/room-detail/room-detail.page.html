@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons *ngIf="nativeService.userIsOnIos" slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>{{room?.title}}</ion-title>
@@ -17,6 +17,13 @@
     <ion-card-content>
       Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
     </ion-card-content>
-    <ion-button [disabled]="room?.rented" (click)="rentRoom()">Rent</ion-button>
+    <ion-button *ngIf="!isRentedByUser" [disabled]="room?.rented" (click)="rentRoom()">
+        <ion-label *ngIf="!isLoading">Rent</ion-label>
+        <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
+    </ion-button>
+    <ion-button *ngIf="isRentedByUser" color="danger" (click)="removeReservation()">
+      <ion-label *ngIf="!isLoading">Delete reservation</ion-label>
+      <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
+    </ion-button>
   </ion-card>
 </ion-content>

@@ -7,6 +7,7 @@ export interface Room {
     companyName: string;
     timestamp: number;
     rented: boolean;
+    renter: string;
     roomId: string;
     imageUrl: string;
     proprietor: string;

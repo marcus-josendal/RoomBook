@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Room } from '../../../models/Room';
 import { NavigationExtras } from '@angular/router';
 import { Router } from '@angular/router';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-all-rooms',
@@ -24,11 +25,16 @@ export class AllRoomsPage implements OnInit, OnDestroy {
   isProprietorChanges: Subscription;
 
   ngOnInit() {
+    // Checks if user is proprietor or not
     this.isProprietorChanges = this.authService.getIsProprietor()
         .subscribe(isProprietor => {
           this.isProprietor = isProprietor;
         });
-    this.rooms = this.roomService.getAllRooms();
+
+    // Instead of simply returning all rooms in random order, sort them by timestamp
+    this.rooms = this.roomService.getAllRooms().pipe(
+        map(rooms => rooms.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()))
+    );
   }
 
   ngOnDestroy() {

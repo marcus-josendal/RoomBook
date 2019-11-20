@@ -8,27 +8,32 @@ import {distinctUntilChanged, flatMap, map} from 'rxjs/operators';
 })
 export class AuthService {
 
-    constructor(
-        private fireAuth: AngularFireAuth,
-        private fireStore: AngularFirestore
-    ) { this.setUserInfo(); }
+    constructor(private fireAuth: AngularFireAuth, private fireStore: AngularFirestore) {
+        this.setUserInfo();
+    }
 
     user = null;
 
+    /* After the user is registered their role is set */
     registerUser(email: string, password: string, isRentingOut: boolean) {
         return this.fireAuth.auth.createUserWithEmailAndPassword(email, password)
             .then(res => this.setUserRole(res.user.uid, isRentingOut)
                 .catch(e => e));
     }
 
-    // Sets the user as a proprietor or not based on what they picked in the sign-up form
+    /* Standard login - callback should be handled by user */
+    login(email: string, password: string) {
+        return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
+    }
+
+    /* Sets the user as a proprietor or not based on what they picked in the sign-up form */
     setUserRole(uid: string, isRentingOut: boolean) {
         return this.fireStore.collection('users')
             .add({ proprietor: isRentingOut, uid })
             .catch(e => 'Something went wrong when updating your user:' + e);
     }
 
-    // Subscribable - listens to new changes in authState and returns true if user is proprietor
+    /*  Observable - listens to new changes in authState and returns true if user is proprietor */
     getIsProprietor() {
         return this.fireAuth.authState
             .pipe(
@@ -40,7 +45,7 @@ export class AuthService {
             );
     }
 
-    // Listens to new changes in auth and sets the user info as soon as the service is injected
+    /* Listens to new changes in auth and sets the user info as soon as the service is injected */
     setUserInfo() {
         this.fireAuth.authState.subscribe(auth =>  this.user = auth);
     }

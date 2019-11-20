@@ -18,11 +18,16 @@ export class AddNewRoomPage implements OnInit {
       private roomService: RoomService
   ) { }
 
+  /* Form fields */
   title = '';
+  description: '';
   roomLocation = '';
   roomPrice: number | null = null;
   email = '';
   companyName = '';
+  imageUrl = '';
+
+  /* Loading fields */
   isFetchingLocation = false;
   isLoading = false;
 
@@ -45,9 +50,16 @@ export class AddNewRoomPage implements OnInit {
 
   addRoom() {
     this.isLoading = true;
-    this.roomService.createNewRoomForRent(this.title, this.roomLocation, this.roomPrice, this.email, this.companyName)
-        .then(data => console.log(data))
-        .catch(e => console.log(e))
-        .finally(() => this.isLoading = false);
+    this.roomService.createNewRoomForRent(
+        this.title,
+        this.description,
+        this.imageUrl,
+        this.roomLocation,
+        this.roomPrice,
+        this.email,
+        this.companyName
+    ).then(data => console.log(data))
+     .catch(e => console.log(e))
+     .finally(() => this.isLoading = false);
   }
 }

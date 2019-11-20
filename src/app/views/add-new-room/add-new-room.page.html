@@ -13,6 +13,12 @@
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">
         <ion-item class="form-container">
+            <ion-label position="stacked">Short Description</ion-label>
+            <ion-input placeholder="This room as some of the best .." [(ngModel)]="description"></ion-input>
+        </ion-item>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-margin-bottom">
+        <ion-item class="form-container">
             <ion-label position="stacked">
                 Location
                 <span style="color: grey">(press icon for location)</span>
@@ -40,13 +46,13 @@
     <ion-row class="ion-justify-content-center ion-margin-bottom">
         <ion-item class="form-container">
             <ion-label position="stacked">Price</ion-label>
-            <ion-input placeholder="email@email.com" [(ngModel)]="roomPrice"></ion-input>
+            <ion-input placeholder="0 NOK" [(ngModel)]="roomPrice"></ion-input>
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">
         <ion-item class="form-container">
-            <ion-label position="stacked">Contact Email</ion-label>
-            <ion-input placeholder="0 NOK" [(ngModel)]="email"></ion-input>
+            <ion-label position="stacked">Your Email</ion-label>
+            <ion-input placeholder="myemail@email.com" [(ngModel)]="email"></ion-input>
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">

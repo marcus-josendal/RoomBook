@@ -14,16 +14,18 @@ export class AuthService {
         this.setUserInfo();
     }
 
-    /* After the user is registered their role is set */
+    /* Registers user, sets role and makes makes the users uid available in components that uses this service */
     registerUser(email: string, password: string, isRentingOut: boolean) {
         return this.fireAuth.auth.createUserWithEmailAndPassword(email, password)
-            .then(res => this.setUserRole(res.user.uid, isRentingOut)
-                .catch(e => e));
+            .then(res => this.setUserRole(res.user.uid, isRentingOut).then(() => this.setUserInfo()))
+            .catch(err => 'Error:' + err);
     }
 
-    /* Standard login - callback should be handled by user */
+    /* Standard login and sets the user info */
     login(email: string, password: string) {
-        return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
+        return this.fireAuth.auth.signInWithEmailAndPassword(email, password)
+            .then(() => this.setUserInfo())
+            .catch(err => 'Error:' + err);
     }
 
     /* Sets the user as a proprietor or not based on what they picked in the sign-up form */
@@ -38,15 +40,13 @@ export class AuthService {
         return this.fireAuth.authState
             .pipe(
                 distinctUntilChanged(),
-                flatMap(user =>
-                    this.fireStore.collection('users', ref => ref.where('uid', '==', user.uid)).get()
-                ),
+                flatMap(user => this.fireStore.collection('users', ref => ref.where('uid', '==', user.uid)).get()),
                 map(result => result.docs.some(item => item.get('proprietor') === true))
             );
     }
 
     /* Listens to new changes in auth and sets the user info as soon as the service is injected */
     setUserInfo() {
-        this.fireAuth.authState.subscribe(auth =>  this.user = auth);
+        this.fireAuth.authState.subscribe(auth => this.user = auth);
     }
 }

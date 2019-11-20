@@ -57,7 +57,7 @@ export class RoomService {
   }
 
   /* Removes the reservation for the given room */
-  removeReservationFromUser(roomId: string) {
+  removeReservationOnRoom(roomId: string) {
       return this.fireStore.doc('rooms/' + roomId)
           .update({ rented: false, renter: '' });
   }

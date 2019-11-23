@@ -45,6 +45,15 @@ export class AuthService {
             );
     }
 
+    /* Observable - Returns information about user */
+    getUserMail() {
+        return this.fireAuth.authState;
+    }
+
+    logOutUser() {
+        return this.fireAuth.auth.signOut();
+    }
+
     /* Listens to new changes in auth and sets the user info as soon as the service is injected */
     setUserInfo() {
         this.fireAuth.authState.subscribe(auth => this.user = auth);

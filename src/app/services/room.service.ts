@@ -79,4 +79,16 @@ export class RoomService {
             .collection('rooms', ref => ref.where('renter', '==', userId))
             .valueChanges() as Observable<[Room]>;
     }
+
+    /* Observable -  returns all rooms where the "proprietor"-field is equals to the userId */
+    getMyRooms(userId: string) {
+        return this.fireStore
+            .collection('rooms', ref => ref.where('proprietor', '==', userId))
+            .valueChanges() as Observable<[Room]>;
+    }
+
+    /* Deletes room - returns a promise */
+    deleteRoom(roomId: string) {
+        return this.fireStore.doc('rooms/' + roomId).delete();
+    }
 }

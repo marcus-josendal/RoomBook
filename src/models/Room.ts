@@ -4,7 +4,7 @@ export interface Room {
     location: string;
     price: number;
     email: string;
-    companyName: string;
+    company: string;
     timestamp: number;
     rented: boolean;
     renter: string;

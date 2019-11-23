@@ -11,6 +11,7 @@ export class RoomCardComponent implements OnInit {
   constructor() { }
 
   @Input() roomData: Room;
+  @Input() showStatus: boolean;
 
   ngOnInit() {}
 

@@ -9,6 +9,7 @@ import { AllRoomsPageRoutingModule } from './all-rooms-routing.module';
 import { AllRoomsPage } from './all-rooms.page';
 import {RoomDetailPageModule} from '../room-detail/room-detail.module';
 import {RoomCardComponent} from '../../components/room-card/room-card.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import {RoomCardComponent} from '../../components/room-card/room-card.component'
         FormsModule,
         IonicModule,
         AllRoomsPageRoutingModule,
-        RoomDetailPageModule
+        RoomDetailPageModule,
+        FontAwesomeModule
     ],
     exports: [
         RoomCardComponent

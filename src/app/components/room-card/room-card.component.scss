@@ -1,0 +1,31 @@
+.card {
+  border: 2px solid grey;
+}
+
+.card-content {
+  padding-top: 0 !important;
+}
+
+.status-icon {
+  font-size: 1.7rem;
+}
+
+.success-color {
+  color: #4BB543;
+}
+
+.dangler-color {
+  color: #CC4240;
+}
+
+.status-label {
+  color: black;
+  font-weight: 500;
+  padding-left: 7px;
+  align-self: center;
+}
+
+
+.status-row {
+  margin-top: 10px;
+}

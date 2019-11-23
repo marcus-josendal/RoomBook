@@ -1,3 +1,4 @@
+<script src="../home/home.module.ts"></script>
 <ion-header>
     <ion-toolbar>
         <ion-title>Add New Room for Rental</ion-title>
@@ -5,23 +6,44 @@
 </ion-header>
 
 <ion-content class="ion-padding sign-up-form">
+    <div class="image-container ion-justify-content-center">
+        <img class="room-image" *ngIf="cameraPreview" src="{{'data:image/jpeg;base64,' + cameraPreview}}" />
+        <img class="room-image" *ngIf="!cameraPreview" [src]="placeholderImage" />
+        <ion-row class="ion-justify-content-between">
+        <ion-button [disabled]="isTakingPicture" (click)="takePicture()">
+            <ion-label *ngIf="!isTakingPicture && !this.cameraPreview.length > 0">Take picture</ion-label>
+            <ion-label *ngIf="!isTakingPicture && this.cameraPreview.length > 0">New Picture</ion-label>
+            <ion-spinner name="crescent" *ngIf="isTakingPicture"></ion-spinner>
+        </ion-button>
+            <ion-button [disabled]="cameraPreview.length === 0" color="danger" (click)="this.cameraPreview = ''">
+                <ion-label>Delete Image</ion-label>
+            </ion-button>
+        </ion-row>
+    </div>
     <ion-row class="ion-justify-content-center ion-margin-bottom ion-margin-top">
         <ion-item class="form-container">
-            <ion-label position="stacked">Title</ion-label>
+            <ion-label position="stacked">
+                Title
+                <span class="star-color">*</span>
+            </ion-label>
             <ion-input placeholder="E.g. 'Beautiful Meeting room'" [(ngModel)]="title"></ion-input>
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">
         <ion-item class="form-container">
-            <ion-label position="stacked">Short Description</ion-label>
-            <ion-input placeholder="This room as some of the best .." [(ngModel)]="description"></ion-input>
+            <ion-label position="stacked">
+                Short Description
+                <span class="star-color">*</span>
+            </ion-label>
+            <ion-input placeholder="This room as some of the best .." [(ngModel)]="roomDescription"></ion-input>
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">
         <ion-item class="form-container">
             <ion-label position="stacked">
                 Location
-                <span style="color: grey">(press icon for location)</span>
+                <span style="color: grey">(press icon for location) </span>
+                <span class="star-color">*</span>
             </ion-label>
             <ion-input
                     [disabled]="isFetchingLocation"
@@ -45,27 +67,38 @@
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">
         <ion-item class="form-container">
-            <ion-label position="stacked">Price</ion-label>
+            <ion-label position="stacked">
+                Price
+                <span class="star-color">*</span>
+            </ion-label>
             <ion-input placeholder="0 NOK" [(ngModel)]="roomPrice"></ion-input>
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">
         <ion-item class="form-container">
-            <ion-label position="stacked">Your Email</ion-label>
+            <ion-label position="stacked">
+                Email
+                <span class="star-color">*</span>
+            </ion-label>
             <ion-input placeholder="myemail@email.com" [(ngModel)]="email"></ion-input>
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">
         <ion-item class="form-container">
-            <ion-label position="stacked">Company Name</ion-label>
+            <ion-label position="stacked">
+                Company Name
+                <span class="star-color">*</span>
+            </ion-label>
             <ion-input placeholder="My Company" [(ngModel)]="companyName"></ion-input>
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-top">
-        <ion-button class="sign-up-button" (click)="addRoom()">
+        <ion-button class="sign-up-button" (click)="checkImageAndAddRoom()">
             <ion-label *ngIf="!isLoading">Add Room</ion-label>
             <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
         </ion-button>
-        <ion-label class="ion-text-center" color="danger"></ion-label>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+        <ion-label class="ion-text-center" color="danger"> {{ errorMessage }} </ion-label>
     </ion-row>
 </ion-content>

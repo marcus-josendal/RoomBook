@@ -12,7 +12,7 @@ import {map} from 'rxjs/operators';
   templateUrl: './all-rooms.page.html',
   styleUrls: ['./all-rooms.page.scss'],
 })
-export class AllRoomsPage implements OnInit, OnDestroy {
+export class AllRoomsPage implements OnInit {
 
   constructor(
       private authService: AuthService,
@@ -21,25 +21,15 @@ export class AllRoomsPage implements OnInit, OnDestroy {
   ) { }
 
   rooms: Observable<Room[]>;
-  isProprietor: boolean | null = null;
-  isProprietorChanges: Subscription;
+  isEmpty = false;
 
   ngOnInit() {
-    /* If user is proprietor the next value will be true */
-    this.isProprietorChanges = this.authService.getIsProprietor()
-        .subscribe(isProprietor => {
-          this.isProprietor = isProprietor;
-        });
-
     /* Sorts the rooms on timestamp and filters out rooms the logged in user have rented */
     this.rooms = this.roomService.getAllRooms().pipe(
         map(rooms => rooms.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())),
         map(rooms => rooms.filter(room => room.renter !== this.authService.user.uid))
     );
-  }
-
-  ngOnDestroy() {
-    this.isProprietorChanges.unsubscribe();
+    this.rooms.subscribe((next: Room[] | []) => this.isEmpty = next.length === 0);
   }
 
   navigateToRoomDetailView(room: Room) {

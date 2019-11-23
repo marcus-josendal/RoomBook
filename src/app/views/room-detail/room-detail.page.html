@@ -8,22 +8,24 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAPFBMVEXm6eyXoazq7e/Dyc/l6ey/xcyrs7vX3OCnr7jV2d6Zo63O09ibpa+5wMezusKUn6nv8fTP1Nng4+fIzdNt0BqjAAABeUlEQVR4nO3a0ZKaMBiAURIKayMaV97/XRdQZ6qNt0u7/zk3jnCT+SbEaOw6AAAAAAAAAAAAAAAAAAAAAAAAAID/V27ae1Q7ytd+aOqvUbPkoaY36hA0ylzLNDZNpc57j24XeSrn9nKS81immBOlpo83d/LvlL51KP+KX++bdNGb5Ovx4/VBCd4kn2uqh5d7wZv0qSzOzzMldpN8KKdLX5Imq3uTqfSXz1QfV29tgjcZUhlLGW8tcn/eXmM36brDspefrtulfKplW26jN8nH4b6Rz6d1vV2jRG/SPZbXJUk6f24zJXyTuy1Jzsc1iiabW5L1UVqiaLJ6JLlFmSZN/kiyRdHkOcktSvgmz0mW93OJ3uQ1ic/iRpLwTRpJojdpJQnepJkkbJP1d/vcThK2SZ7KeFm+CZ8urfOdQ8zznbmWsuzix8NfplKPe49uH7mvKZXSPC/uY06T9WRnHvqWOez/CgAAAAAAAAAAAAAAAAAAAAAAAAAAfqIvurINbz6A3oMAAAAASUVORK5CYII=" />
+  <ion-card class="card">
+    <img [src]="room?.imageUrl">
     <ion-card-header>
-      <ion-card-subtitle>{{ room?.title }}</ion-card-subtitle>
-      <ion-card-title> {{ room?.price }}</ion-card-title>
+      <ion-card-subtitle>Price: {{ room?.price }} NOK</ion-card-subtitle>
+      <ion-card-title> {{ room?.title }}</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+    <ion-card-content class="description-container">
+      {{ room?.description }}
+      <div class="button-container">
+        <ion-button *ngIf="!isRentedByUser" [disabled]="room?.rented" (click)="rentRoom()">
+            <ion-label *ngIf="!isLoading">Rent Room</ion-label>
+            <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
+        </ion-button>
+        <ion-button *ngIf="isRentedByUser" color="danger" (click)="removeReservation()">
+          <ion-label *ngIf="!isLoading">Delete reservation</ion-label>
+          <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
+        </ion-button>
+      </div>
     </ion-card-content>
-    <ion-button *ngIf="!isRentedByUser" [disabled]="room?.rented" (click)="rentRoom()">
-        <ion-label *ngIf="!isLoading">Rent</ion-label>
-        <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
-    </ion-button>
-    <ion-button *ngIf="isRentedByUser" color="danger" (click)="removeReservation()">
-      <ion-label *ngIf="!isLoading">Delete reservation</ion-label>
-      <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
-    </ion-button>
   </ion-card>
 </ion-content>

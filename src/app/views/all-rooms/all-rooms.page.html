@@ -1,13 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>all-rooms</ion-title>
+    <ion-title>All Rooms</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let room of rooms | async" lines="none" (click) = navigateToRoomDetailView(room)>
-      <app-room-card [roomData]="room"></app-room-card>
+      <app-room-card [roomData]="room" [showStatus]="true"></app-room-card>
     </ion-item>
   </ion-list>
+  <ion-row class="ion-justify-content-center empty-container">
+    <ion-label class="no-content-text" *ngIf="isEmpty">
+      No rooms avaliable,
+      <span class="thicc-text">yet.</span>
+    </ion-label>
+  </ion-row>
 </ion-content>

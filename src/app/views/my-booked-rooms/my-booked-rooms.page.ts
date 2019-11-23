@@ -21,11 +21,14 @@ export class MyBookedRoomsPage implements OnInit {
 
   userId = this.authService.user.uid;
   myBookedRooms: Observable<Room[]>;
+  isEmpty = false;
 
   ngOnInit() {
     this.myBookedRooms = this.roomService.getMyBookedRooms(this.userId).pipe(
-        map(rooms => rooms.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()))
+        map(rooms => rooms.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())),
     );
+    /* For some reason the implementation in the 'all-rooms' page doesn't work here */
+    this.roomService.getMyBookedRooms(this.userId).subscribe((next: Room[] | []) => this.isEmpty = next.length === 0);
   }
 
   navigateToRoomDetailView(room: Room) {

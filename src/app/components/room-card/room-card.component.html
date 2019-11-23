@@ -1,12 +1,22 @@
 <p>
-  <ion-card>
-    <img src="https://i.pinimg.com/originals/9b/96/92/9b9692c9f0db9f6276e6bd29a98c25e0.png" />
+  <ion-card class="card">
+    <img [src]="roomData.imageUrl" />
     <ion-card-header>
       <ion-card-subtitle>Price: {{ roomData.price }} NOK</ion-card-subtitle>
       <ion-card-title>{{ roomData.title }}</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+    <ion-card-content class="card-content">
+     {{ roomData.description }}
+      <div *ngIf="showStatus">
+        <ion-row *ngIf="!roomData.rented" class="status-row">
+          <fa-icon class="status-icon success-color" [icon]="['far', 'check-circle']"></fa-icon>
+          <ion-label class="status-label">Available</ion-label>
+        </ion-row>
+        <ion-row *ngIf="roomData.rented" class="status-row">
+          <fa-icon class="status-icon dangler-color" [icon]="['far', 'times-circle']"></fa-icon>
+          <ion-label class="status-label">Is rented</ion-label>
+        </ion-row>
+      </div>
     </ion-card-content>
   </ion-card>
 </p>

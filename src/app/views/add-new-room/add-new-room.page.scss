@@ -4,6 +4,21 @@
   margin-bottom: 10px;
 }
 
+.room-image {
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid grey;
+}
+
+.image-container {
+  max-width: 91%;
+  margin: 0 auto;
+}
+
 .grey-icon {
   color: #3171e0;
+}
+
+.star-color {
+  color: red;
 }

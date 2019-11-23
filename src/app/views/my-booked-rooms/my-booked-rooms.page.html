@@ -1,15 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>my-booked-rooms</ion-title>
+    <ion-title>My Booked Rooms</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-content>
-    <ion-list>
+    <ion-list *ngIf="!isEmpty">
       <ion-item *ngFor="let room of myBookedRooms | async" (click)="navigateToRoomDetailView(room)" lines="none">
-        <app-room-card [roomData]="room"></app-room-card>
+        <app-room-card [roomData]="room" [showStatus]="false"></app-room-card>
       </ion-item>
     </ion-list>
+    <ion-row class="ion-justify-content-center empty-container">
+      <ion-label class="no-content-text" *ngIf="isEmpty">
+        No rooms reserved,
+        <span class="thicc-text">yet.</span>
+      </ion-label>
+    </ion-row>
   </ion-content>
 </ion-content>

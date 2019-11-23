@@ -1,9 +1,11 @@
 <ion-content>
   <ion-content>
-    <ion-img src="resources/icon.png"></ion-img>
-    <ion-row class="button-container ion-justify-content-center ion-align-items-center ion-margin-top">
-      <ion-button [routerLink]="['/sign-up']" class="auth-button ion-margin-bottom">New user</ion-button>
-      <ion-button [routerLink]="['/login']" fill="outline" class="auth-button">Sign in</ion-button>
-    </ion-row>
+    <div class="main-container">
+      <ion-img class="image-logo" src="assets/logo.png"></ion-img>
+      <ion-row class="ion-justify-content-center ion-align-items-center ion-margin-top">
+        <ion-button [routerLink]="['/sign-up']" class="auth-button ion-margin-bottom" mode="ios">New user</ion-button>
+        <ion-button [routerLink]="['/login']" fill="outline" class="auth-button" mode="ios">Sign in</ion-button>
+      </ion-row>
+    </div>
   </ion-content>
 </ion-content>

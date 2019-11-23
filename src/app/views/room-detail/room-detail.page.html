@@ -3,29 +3,45 @@
     <ion-buttons *ngIf="nativeService.userIsOnIos" slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{room?.title}}</ion-title>
+    <ion-title>Room Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card class="card">
-    <img [src]="room?.imageUrl">
-    <ion-card-header>
-      <ion-card-subtitle>Price: {{ room?.price }} NOK</ion-card-subtitle>
-      <ion-card-title> {{ room?.title }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content class="description-container">
-      {{ room?.description }}
-      <div class="button-container">
-        <ion-button *ngIf="!isRentedByUser" [disabled]="room?.rented" (click)="rentRoom()">
-            <ion-label *ngIf="!isLoading">Rent Room</ion-label>
-            <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
-        </ion-button>
-        <ion-button *ngIf="isRentedByUser" color="danger" (click)="removeReservation()">
-          <ion-label *ngIf="!isLoading">Delete reservation</ion-label>
-          <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
-        </ion-button>
-      </div>
-    </ion-card-content>
-  </ion-card>
+  <img class="top-img" [src]="room?.imageUrl">
+  <div class="info-container ion-padding">
+    <ion-row>
+      <ion-label class="ion-margin-bottom room-title"> {{ room?.title }}</ion-label>
+    </ion-row>
+    <ion-label>Price: <span class="bold-text"> {{ room?.price }} </span> NOK</ion-label>
+    <ion-row class="ion-margin-top ion-margin-bottom description-container">
+      <ion-label class="sub-headline ion-padding-bottom"> Description</ion-label>
+      <ion-label>{{ room?.description }} </ion-label>
+    </ion-row>
+    <ion-label class="sub-headline ion-margin-bottom">General Information</ion-label>
+    <div>
+      <ion-row class="ion-justify-content-between list-item">
+        <ion-label class="bold-text">Company:</ion-label>
+        <ion-label>{{ room?.company }}</ion-label>
+      </ion-row>
+      <ion-row class="ion-justify-content-between list-item">
+        <ion-label class="bold-text">Contact:</ion-label>
+        <ion-label>{{ room?.email }}</ion-label>
+      </ion-row>
+      <ion-row class="ion-justify-content-between list-item">
+        <ion-label class="bold-text">Location:</ion-label>
+        <ion-label>{{ this.dateFormatted }}</ion-label>
+      </ion-row>
+    </div>
+    <div class="bottom-button-container">
+      <ion-button mode="ios" class="bottom-button ion-align-self-center" *ngIf="!isRentedByUser" [disabled]="room?.rented" (click)="rentRoom()">
+        <ion-label *ngIf="!isLoading">Rent Room</ion-label>
+        <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
+      </ion-button>
+      <ion-button mode="ios" class="bottom-button" *ngIf="isRentedByUser" color="danger" (click)="removeReservation()">
+        <ion-label *ngIf="!isLoading">Delete reservation</ion-label>
+        <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
+      </ion-button>
+    </div>
+  </div>
 </ion-content>

@@ -1,12 +1,48 @@
-.description-container {
-  padding-top: 0 !important;
+.info-container {
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+  display: flex;
+  flex-direction: column;
 }
 
-.button-container {
-  margin-top: 10px;
-  padding-left: -40px !important;
+.description-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .card {
   border: 2px solid grey;
+}
+
+.top-img {
+  width: 100%;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.room-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: normal !important;
+}
+
+.sub-headline {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.bottom-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.bottom-button {
+  min-width: 80%;
+}
+
+.list-item {
+  padding-bottom: 5px;
 }

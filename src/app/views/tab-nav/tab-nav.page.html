@@ -6,11 +6,15 @@
     </ion-tab-button>
     <ion-tab-button tab="my-booked-rooms">
       <fa-icon [icon]="['far', 'bookmark']" class="icon-size"></fa-icon>
-      <ion-label>Booked Rooms</ion-label>
+      <ion-label>Booked by me</ion-label>
     </ion-tab-button>
     <ion-tab-button *ngIf="isProprietor" tab="new-room">
-      <fa-icon [icon]="['fas', 'plus']" class="icon-size"></fa-icon>
+      <fa-icon [icon]="['far', 'plus-square']" class="icon-size"></fa-icon>
       <ion-label>Add Room</ion-label>
+    </ion-tab-button>
+    <ion-tab-button *ngIf="isProprietor" tab="user">
+      <fa-icon [icon]="['far', 'user']" class="icon-size"></fa-icon>
+      <ion-label>Profile</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

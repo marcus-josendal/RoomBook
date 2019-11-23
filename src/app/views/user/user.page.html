@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-row class="ion-margin-bottom">
+    <fa-icon [icon]="['far', 'envelope']" class="information-icon"></fa-icon>
+    <ion-label class="icon-text">
+      My Email:
+    </ion-label>
+    <ion-label class="info-text"> {{ email | async }}</ion-label>
+  </ion-row>
+  <ion-row>
+    <fa-icon [icon]="['far', 'user']" class="information-icon"></fa-icon>
+    <ion-label class="icon-text">Your role:</ion-label>
+    <ion-label class="info-text"> {{ userStatus }} </ion-label>
+  </ion-row>
+  <ion-row class="ion-justify-content-center">
+    <ion-label class="sub-headline">My Rooms</ion-label>
+  </ion-row>
+  <ion-item class="room-item" *ngFor="let room of myRooms | async" lines="none">
+    <ion-label>
+      {{ room.title }}
+      <span class="bold-text" *ngIf="room.rented"> (rented)</span>
+    </ion-label>
+    <ion-button [disabled]="isDeleting || room.rented" mode="ios" color="danger" (click)="deleteRoom(room.roomId)">
+      <ion-label *ngIf="!isDeleting">Delete Room</ion-label>
+      <ion-spinner name="crescent" *ngIf="isDeleting"></ion-spinner>
+    </ion-button>
+  </ion-item>
+  <ion-row>
+    <ion-button (click)="signOut()" class="sign-out-button">Sign out</ion-button>
+  </ion-row>
+</ion-content>

@@ -3,6 +3,19 @@
   width: 100%;
 }
 
+.image-logo {
+  width: 70%;
+  margin: 0 auto 30px;
+}
+
+.main-container {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
 .login-button {
   min-width: 50%;
 }

@@ -10,12 +10,12 @@
         <img class="room-image" *ngIf="cameraPreview" src="{{'data:image/jpeg;base64,' + cameraPreview}}" />
         <img class="room-image" *ngIf="!cameraPreview" [src]="placeholderImage" />
         <ion-row class="ion-justify-content-between">
-        <ion-button [disabled]="isTakingPicture" (click)="takePicture()">
+        <ion-button mode="ios" [disabled]="isTakingPicture" (click)="takePicture()">
             <ion-label *ngIf="!isTakingPicture && !this.cameraPreview.length > 0">Take picture</ion-label>
             <ion-label *ngIf="!isTakingPicture && this.cameraPreview.length > 0">New Picture</ion-label>
             <ion-spinner name="crescent" *ngIf="isTakingPicture"></ion-spinner>
         </ion-button>
-            <ion-button [disabled]="cameraPreview.length === 0" color="danger" (click)="this.cameraPreview = ''">
+            <ion-button mode="ios" [disabled]="cameraPreview.length === 0" color="danger" (click)="this.cameraPreview = ''">
                 <ion-label>Delete Image</ion-label>
             </ion-button>
         </ion-row>
@@ -35,7 +35,7 @@
                 Short Description
                 <span class="star-color">*</span>
             </ion-label>
-            <ion-input placeholder="This room as some of the best .." [(ngModel)]="roomDescription"></ion-input>
+            <ion-textarea placeholder="This room as some of the best .." [(ngModel)]="roomDescription"></ion-textarea>
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">
@@ -93,7 +93,7 @@
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-top">
-        <ion-button class="sign-up-button" (click)="checkImageAndAddRoom()">
+        <ion-button mode="ios" class="sign-up-button" (click)="checkImageAndAddRoom()">
             <ion-label *ngIf="!isLoading">Add Room</ion-label>
             <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
         </ion-button>

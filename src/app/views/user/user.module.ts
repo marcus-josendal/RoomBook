@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RoomDetailPageRoutingModule } from './room-detail-routing.module';
+import { UserPageRoutingModule } from './user-routing.module';
 
-import { RoomDetailPage } from './room-detail.page';
+import { UserPage } from './user.page';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -14,12 +14,9 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
         CommonModule,
         FormsModule,
         IonicModule,
-        RoomDetailPageRoutingModule,
+        UserPageRoutingModule,
         FontAwesomeModule
     ],
-    exports: [
-        RoomDetailPage
-    ],
-    declarations: [RoomDetailPage]
+  declarations: [UserPage]
 })
-export class RoomDetailPageModule {}
+export class UserPageModule {}

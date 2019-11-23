@@ -44,10 +44,15 @@ export class RoomDetailPage implements OnInit {
         .finally(() => this.isLoading = false);
   }
 
+  /* Delete reservation and redirect to all rooms */
   removeReservation() {
     this.isLoading = true;
     this.roomService.removeReservationOnRoom(this.room.roomId)
         .then(() => this.router.navigate(['/tab-nav/nav/all-rooms']))
         .finally(() => this.isLoading = false);
+  }
+
+  get dateFormatted() {
+    return new Date(this.room.timestamp * 1000).toDateString();
   }
 }

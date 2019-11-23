@@ -1,12 +1,16 @@
-.button-container {
+.main-container {
   height: 100%;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+.image-logo {
+  width: 70%;
+  margin: 0 auto 30px;
 }
 
 .auth-button {
   width: 70%;
 }
 
-.secondary-button {
-
-}

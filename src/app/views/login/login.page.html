@@ -8,23 +8,26 @@
 </ion-header>
 
 <ion-content class="ion-padding sign-up-form">
-  <ion-row class="ion-justify-content-center ion-margin-bottom ion-margin-top">
-    <ion-item class="login-item">
-      <ion-label position="stacked">Your e-mail</ion-label>
-      <ion-input [(ngModel)]="email"></ion-input>
-    </ion-item>
-  </ion-row>
-  <ion-row class="ion-justify-content-center ion-margin-bottom">
-    <ion-item class="login-item">
-      <ion-label position="stacked">Pick a password</ion-label>
-      <ion-input type="password" [(ngModel)]="password"></ion-input>
-    </ion-item>
-  </ion-row>
-  <ion-row class="ion-justify-content-center ion-margin-top">
-    <ion-button class="login-button" (click)="login()">
-      <ion-label *ngIf="!isLoading">Sign In</ion-label>
-      <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
-    </ion-button>
-    <ion-label class="ion-text-center" color="danger"> {{ errorMessage }} </ion-label>
-  </ion-row>
+  <div class="main-container">
+    <ion-img class="image-logo" src="assets/logo-bare.png"></ion-img>
+    <ion-row class="ion-justify-content-center ion-margin-bottom ion-margin-top">
+      <ion-item mode="ios" class="login-item">
+        <ion-label mode="ios" position="stacked">Your e-mail</ion-label>
+        <ion-input placeholder="myemail@email.com" mode="ios" [(ngModel)]="email"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-margin-bottom">
+      <ion-item mode="ios" class="login-item">
+        <ion-label mode="ios" position="stacked">Pick a password</ion-label>
+        <ion-input mode="ios" type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-margin-top">
+      <ion-button mode="ios" class="login-button" (click)="login()">
+        <ion-label *ngIf="!isLoading">Sign In</ion-label>
+        <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
+      </ion-button>
+      <ion-label class="ion-text-center" color="danger"> {{ errorMessage }} </ion-label>
+    </ion-row>
+  </div>
 </ion-content>

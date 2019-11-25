@@ -29,12 +29,21 @@
         <ion-label>{{ room?.email }}</ion-label>
       </ion-row>
       <ion-row class="ion-justify-content-between list-item">
-        <ion-label class="bold-text">Location:</ion-label>
+        <ion-label class="bold-text">Posted on:</ion-label>
         <ion-label>{{ this.dateFormatted }}</ion-label>
+      </ion-row>
+      <ion-row class="ion-justify-content-between list-item">
+        <ion-label class="bold-text">Location:</ion-label>
+        <ion-label>{{ room?.location }}</ion-label>
       </ion-row>
     </div>
     <div class="bottom-button-container">
-      <ion-button mode="ios" class="bottom-button ion-align-self-center" *ngIf="!isRentedByUser" [disabled]="room?.rented" (click)="rentRoom()">
+      <ion-button
+              mode="ios"
+              class="bottom-button ion-align-self-center"
+              *ngIf="!isRentedByUser"
+              [disabled]="room?.rented || this.userId === room?.proprietor"
+              (click)="rentRoom()">
         <ion-label *ngIf="!isLoading">Rent Room</ion-label>
         <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
       </ion-button>

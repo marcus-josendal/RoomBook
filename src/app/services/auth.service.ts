@@ -50,6 +50,7 @@ export class AuthService {
         return this.fireAuth.authState;
     }
 
+    /* Logs out user - returns a promise */
     logOutUser() {
         return this.fireAuth.auth.signOut();
     }

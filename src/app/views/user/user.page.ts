@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {distinctUntilChanged, finalize, first, map} from 'rxjs/operators';
 import {Room} from '../../../models/Room';
 import {Router} from '@angular/router';
@@ -22,20 +22,16 @@ export class UserPage implements OnInit {
   myRooms: Observable<[Room]>;
   isEmpty = false;
   isDeleting = false;
+  isProprietor = false;
+  isProprietorChanges: Subscription;
 
   ngOnInit() {
-    this.email = this.authService.getUserMail().pipe(
-        map(val => val.email)
-    );
-    this.proprietor = this.authService.getIsProprietor().pipe(first());
+    this.email = this.authService.getUserMail().pipe( map(val => val.email) );
+    this.isProprietorChanges = this.authService.getIsProprietor().subscribe(isProprietor => this.isProprietor = isProprietor);
     this.myRooms = this.roomService.getMyRooms(this.authService.user.uid) as Observable<[Room]>;
+    this.roomService.getMyRooms(this.authService.user.uid).subscribe((next: Room[] | []) => this.isEmpty = next.length === 0);
+
   }
-
-
-  get userStatus(): string {
-    return this.proprietor ? 'Proprietor' : 'Renter';
-  }
-
 
   signOut() {
     this.authService.logOutUser().then(() => this.router.navigate(['/home']));

@@ -5,10 +5,7 @@ import { AuthService } from './auth.service';
 import { Observable} from 'rxjs';
 import { Room } from '../../models/Room';
 import { v4 as uuid } from 'uuid';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {AngularFireStorage} from '@angular/fire/storage';
-
-
 
 @Injectable({
     providedIn: 'root'
@@ -21,9 +18,6 @@ export class RoomService {
         private fireStorage: AngularFireStorage,
         private authService: AuthService,
     ) { }
-
-    private cameraPreview = '';
-
 
     /* Creates a new room that can be rented */
     createNewRoomForRent(

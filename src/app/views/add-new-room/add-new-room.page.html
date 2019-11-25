@@ -21,25 +21,25 @@
         </ion-row>
     </div>
     <ion-row class="ion-justify-content-center ion-margin-bottom ion-margin-top">
-        <ion-item class="form-container">
+        <ion-item mode="ios"  class="form-container">
             <ion-label position="stacked">
                 Title
                 <span class="star-color">*</span>
             </ion-label>
-            <ion-input placeholder="E.g. 'Beautiful Meeting room'" [(ngModel)]="title"></ion-input>
+            <ion-input mode="ios"  placeholder="E.g. 'Beautiful Meeting room'" [(ngModel)]="title"></ion-input>
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">
-        <ion-item class="form-container">
+        <ion-item mode="ios"  class="form-container">
             <ion-label position="stacked">
                 Short Description
                 <span class="star-color">*</span>
             </ion-label>
-            <ion-textarea placeholder="This room as some of the best .." [(ngModel)]="roomDescription"></ion-textarea>
+            <ion-textarea mode="ios"  placeholder="This room as some of the best .." [(ngModel)]="roomDescription"></ion-textarea>
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">
-        <ion-item class="form-container">
+        <ion-item mode="ios"  class="form-container">
             <ion-label position="stacked">
                 Location
                 <span style="color: grey">(press icon for location) </span>
@@ -49,6 +49,7 @@
                     [disabled]="isFetchingLocation"
                     [(ngModel)]="roomLocation"
                     placeholder="Office location"
+                    mode="ios"
             ></ion-input>
             <fa-icon
                     *ngIf="!isFetchingLocation"
@@ -66,16 +67,16 @@
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">
-        <ion-item class="form-container">
+        <ion-item mode="ios"  class="form-container">
             <ion-label position="stacked">
                 Price
                 <span class="star-color">*</span>
             </ion-label>
-            <ion-input placeholder="0 NOK" [(ngModel)]="roomPrice"></ion-input>
+            <ion-input mode="ios"  placeholder="0 NOK" [(ngModel)]="roomPrice"></ion-input>
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">
-        <ion-item class="form-container">
+        <ion-item mode="ios"  class="form-container">
             <ion-label position="stacked">
                 Email
                 <span class="star-color">*</span>
@@ -84,12 +85,12 @@
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-bottom">
-        <ion-item class="form-container">
+        <ion-item mode="ios"  class="form-container">
             <ion-label position="stacked">
                 Company Name
                 <span class="star-color">*</span>
             </ion-label>
-            <ion-input placeholder="My Company" [(ngModel)]="companyName"></ion-input>
+            <ion-input mode="ios"  placeholder="My Company" [(ngModel)]="companyName"></ion-input>
         </ion-item>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-top">

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import {Observable, Subscription} from 'rxjs';
-import {distinctUntilChanged, finalize, first, map} from 'rxjs/operators';
+import {distinctUntilChanged, filter, finalize, first, map} from 'rxjs/operators';
 import {Room} from '../../../models/Room';
 import {Router} from '@angular/router';
 import {forEach} from '@angular-devkit/schematics';
@@ -26,7 +26,10 @@ export class UserPage implements OnInit {
   isProprietorChanges: Subscription;
 
   ngOnInit() {
-    this.email = this.authService.getUserMail().pipe( map(val => val.email) );
+    this.email = this.authService.getUserMail().pipe(
+        filter(val => !!val),
+        map(val => val.email)
+    );
     this.isProprietorChanges = this.authService.getIsProprietor().subscribe(isProprietor => this.isProprietor = isProprietor);
     this.myRooms = this.roomService.getMyRooms(this.authService.user.uid) as Observable<[Room]>;
     this.roomService.getMyRooms(this.authService.user.uid).subscribe((next: Room[] | []) => this.isEmpty = next.length === 0);

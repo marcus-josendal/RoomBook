@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {distinctUntilChanged, flatMap, map} from 'rxjs/operators';
+import {distinctUntilChanged, filter, flatMap, map} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -24,8 +24,7 @@ export class AuthService {
     /* Standard login and sets the user info */
     login(email: string, password: string) {
         return this.fireAuth.auth.signInWithEmailAndPassword(email, password)
-            .then(() => this.setUserInfo())
-            .catch(err => 'Error:' + err);
+            .then(() => this.setUserInfo());
     }
 
     /* Sets the user as a proprietor or not based on what they picked in the sign-up form */
@@ -40,6 +39,7 @@ export class AuthService {
         return this.fireAuth.authState
             .pipe(
                 distinctUntilChanged(),
+                filter(user => !!user),
                 flatMap(user => this.fireStore.collection('users', ref => ref.where('uid', '==', user.uid)).get()),
                 map(result => result.docs.some(item => item.get('proprietor') === true))
             );

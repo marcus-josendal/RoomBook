@@ -10,8 +10,8 @@
       <app-room-card [roomData]="room" [showStatus]="true"></app-room-card>
     </ion-item>
   </ion-list>
-  <ion-row class="ion-justify-content-center empty-container">
-    <ion-label class="no-content-text" *ngIf="isEmpty">
+  <ion-row class="ion-justify-content-center empty-container" *ngIf="isEmpty">
+    <ion-label class="no-content-text">
       No rooms avaliable,
       <span class="thicc-text">yet.</span>
     </ion-label>

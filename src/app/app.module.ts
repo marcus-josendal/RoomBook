@@ -29,13 +29,6 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 library.add(fas, far, fab);
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDQiaByENUukJv-SGWyri_g1lzHH-vsIuY',
-  authDomain: 'roombook-e1ebf.firebaseapp.com',
-  databaseURL: 'https://roombook-e1ebf.firebaseio.com',
-  projectId: 'roombook-e1ebf',
-  storageBucket: 'roombook-e1ebf.appspot.com',
-  messagingSenderId: '428331030982',
-  appId: '1:428331030982:web:470f8a840555150b5e7ac7'
 };
 
 @NgModule({

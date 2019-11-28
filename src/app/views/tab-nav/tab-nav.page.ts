@@ -12,16 +12,11 @@ export class TabNavPage implements OnInit {
     constructor(private authService: AuthService) { }
 
     isProprietor = false;
-    isProprietorChanges: Subscription;
 
     ngOnInit() {
         /* If user is proprietor the next value will be true */
-        this.isProprietorChanges = this.authService.getIsProprietor()
+        this.authService.getIsProprietor()
             .subscribe(isProprietor => this.isProprietor = isProprietor);
-    }
-
-    ionViewDidLeave() {
-        this.isProprietorChanges.unsubscribe();
     }
 
 }

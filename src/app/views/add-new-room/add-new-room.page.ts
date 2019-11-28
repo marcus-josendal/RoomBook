@@ -42,7 +42,7 @@ export class AddNewRoomPage implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-
+    this.authService.getCompanyName().subscribe(next => this.companyName = next);
   }
 
   /* Because of the navigation the component is not destroyed on leave, so we have to manually reset the input fields */
@@ -116,7 +116,7 @@ export class AddNewRoomPage implements OnInit, OnDestroy {
     const validString = (input: string) => input.length >= 1;
     const toBeValidated = [this.title, this.roomDescription, this.roomLocation, this.email, this.companyName];
 
-    if (toBeValidated.filter(e => validString(e)).length === toBeValidated.length && this.roomPrice > 0) {
+    if (toBeValidated.filter(e => validString(e)).length === toBeValidated.length && this.roomPrice >= 0) {
       return true;
     } else {
       this.errorMessage = 'Please fill in all required fields';

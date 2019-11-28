@@ -1,10 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>My Information</ion-title>
+    <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ion-row class="ion-justify-content-center ion-margin-bottom">
+    <ion-label class="sub-headline">My Information</ion-label>
+  </ion-row>
   <ion-row class="ion-margin-bottom">
     <fa-icon [icon]="['far', 'envelope']" class="information-icon"></fa-icon>
     <ion-label class="icon-text">
@@ -12,13 +15,18 @@
     </ion-label>
     <ion-label class="info-text"> {{ email | async }}</ion-label>
   </ion-row>
-  <ion-row>
+  <ion-row class="ion-margin-bottom">
     <fa-icon [icon]="['far', 'user']" class="information-icon"></fa-icon>
     <ion-label class="icon-text">Your role:</ion-label>
     <ion-label class="info-text"> {{ isProprietor ? 'Proprietor' : 'Tenant'  }} </ion-label>
   </ion-row>
+  <ion-row *ngIf="company">
+    <fa-icon [icon]="['far', 'building']" class="information-icon"></fa-icon>
+    <ion-label class="icon-text">Company:</ion-label>
+    <ion-label class="info-text"> {{ company }} </ion-label>
+  </ion-row>
   <div *ngIf="isProprietor">
-    <ion-row class="ion-justify-content-center">
+    <ion-row class="ion-justify-content-center margin-top">
       <ion-label class="sub-headline">My Rooms</ion-label>
     </ion-row>
     <ion-item class="room-item" *ngFor="let room of myRooms | async" lines="none">

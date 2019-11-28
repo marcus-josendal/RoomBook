@@ -18,6 +18,7 @@ export class UserPage implements OnInit {
   constructor(private authService: AuthService, private router: Router, private roomService: RoomService) { }
 
   email: Observable<string>;
+  company: string | null = null;
   proprietor: Observable<boolean>;
   myRooms: Observable<[Room]>;
   isEmpty = false;
@@ -30,8 +31,9 @@ export class UserPage implements OnInit {
         filter(val => !!val),
         map(val => val.email)
     );
-    this.isProprietorChanges = this.authService.getIsProprietor().subscribe(isProprietor => this.isProprietor = isProprietor);
+    this.authService.getCompanyName().subscribe(next => this.company = next);
     this.myRooms = this.roomService.getMyRooms(this.authService.user.uid) as Observable<[Room]>;
+    this.isProprietorChanges = this.authService.getIsProprietor().subscribe(isProprietor => this.isProprietor = isProprietor);
     this.roomService.getMyRooms(this.authService.user.uid).subscribe((next: Room[] | []) => this.isEmpty = next.length === 0);
 
   }

@@ -26,8 +26,9 @@ export class AllRoomsPage implements OnInit {
   ngOnInit() {
     /* Sorts the rooms on timestamp and filters out rooms the logged in user have rented */
     this.rooms = this.roomService.getAllRooms().pipe(
-        map(rooms => rooms.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())),
-        map(rooms => rooms.filter(room => room.renter !== this.authService.user.uid))
+        map(rooms => rooms
+            .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+            .filter(room => room.renter !== this.authService.user.uid))
     );
     this.rooms.subscribe((next: Room[] | []) => this.isEmpty = next.length === 0);
   }

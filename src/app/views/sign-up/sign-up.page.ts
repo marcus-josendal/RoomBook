@@ -19,6 +19,7 @@ export class SignUpPage implements OnInit {
     willBeRentingOut = false;
     errorMessage = '';
     isLoading = false;
+    companyName: string | null = '';
 
     ngOnInit() {
     }
@@ -27,7 +28,8 @@ export class SignUpPage implements OnInit {
         const isValidInput = this.validateInput();
         if (isValidInput.valid) {
             this.isLoading = true;
-            this.authService.registerUser(this.email, this.password, this.willBeRentingOut)
+            this.companyName = this.companyName.length > 0 ? this.companyName : null;
+            this.authService.registerUser(this.email, this.password, this.willBeRentingOut, this.companyName)
                 .then(() => this.router.navigate(['tab-nav']))
                 .catch(err => this.errorMessage = err)
                 .finally(() => this.isLoading = false);
@@ -37,19 +39,20 @@ export class SignUpPage implements OnInit {
     }
 
 
-    // I really don't like writing custom validation, but the Angular frameworks for validation looks awful.
+    /* I really don't like writing custom validation, but the Angular frameworks for validation looks awful. */
     validateInput(): { valid: boolean, statusMessage: string; } {
         const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
         const validatePassword = (p, cp) =>  p === cp && p.length >= 8;
+        const validateCompanyName = (cn, renting) => !(renting && cn < 1);
 
-        if (validateEmail(this.email) && validatePassword(this.password, this.confirmPassword)) {
+        if (validateEmail(this.email) && validatePassword(this.password, this.confirmPassword) && validateCompanyName(this.companyName, this.willBeRentingOut)) {
             return { valid: true, statusMessage: 'ok'};
-        } else if (!validateEmail(this.email) && !validatePassword(this.password, this.confirmPassword)) {
-            return { valid: false, statusMessage: 'Please use a valid e-mail and password' };
-        } else if (validateEmail(this.email) && !validatePassword(this.password, this.confirmPassword)) {
-            return { valid: false, statusMessage: 'Please make sure your password is longer than 8 characters and match' };
-        } else if (!validateEmail(this.email) && validatePassword(this.password, this.confirmPassword)) {
-            return { valid: false, statusMessage: 'Please use valid e-mail address' };
+        } else if (!validateEmail(this.email)) {
+            return { valid: false, statusMessage: 'Please use a valid e-mail' };
+        } else if (!validatePassword(this.password, this.confirmPassword)) {
+            return {valid: false, statusMessage: 'Please make sure your password is longer than 8 characters and match'};
+        } else if (this.willBeRentingOut && this.companyName.length < 1) {
+            return {valid: false, statusMessage: 'Please write a company name'};
         } else {
             return { valid: false, statusMessage: 'Please use valid credentials' };
         }

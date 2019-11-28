@@ -11,8 +11,8 @@
         <app-room-card [roomData]="room" [showStatus]="false"></app-room-card>
       </ion-item>
     </ion-list>
-    <ion-row class="ion-justify-content-center empty-container">
-      <ion-label class="no-content-text" *ngIf="isEmpty">
+    <ion-row *ngIf="isEmpty" class="ion-justify-content-center empty-container">
+      <ion-label class="no-content-text">
         No rooms reserved,
         <span class="thicc-text">yet.</span>
       </ion-label>

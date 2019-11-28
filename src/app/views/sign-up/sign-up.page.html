@@ -28,11 +28,17 @@
         <ion-input mode="ios" type="password" [(ngModel)]="confirmPassword"></ion-input>
       </ion-item>
     </ion-row>
+    <ion-row *ngIf="willBeRentingOut" class="ion-justify-content-center ion-margin-bottom">
+      <ion-item mode="ios" class="sign-up-item">
+        <ion-label mode="ios" position="stacked">Company Name</ion-label>
+        <ion-input mode="ios" [(ngModel)]="companyName"></ion-input>
+      </ion-item>
+    </ion-row>
     <ion-item lines="none">
       <ion-label>Will you also be renting out rooms?</ion-label>
       <ion-checkbox mode="ios" [(ngModel)]="willBeRentingOut" color=""></ion-checkbox>
     </ion-item>
-    <ion-row class="ion-justify-content-center ion-margin-top">
+    <ion-row class="ion-justify-content-center sign-up-button-container ion-margin-top">
       <ion-button mode="ios" class="sign-up-button" (click)="registerUser()">
         <ion-label *ngIf="!isLoading">Create User</ion-label>
         <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
